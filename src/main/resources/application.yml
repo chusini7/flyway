@@ -1,0 +1,32 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: flyway-demo
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${DATABASE_URL:jdbc:mysql://172.16.10.119:3307/flyway_db?characterEncoding=utf8&allowMultiQueries=true&useSSL=false}
+    username: ${DATABASE_USERNAME:root}
+    password: ${DATABASE_PASSWORD:eFreight.cn}
+    hikari:
+      maximum-pool-size: 1  # 读取环境配置 filter init时用一次
+  flyway:
+    enabled: true
+    group: true
+    locations: classpath:/migration/
+    clean-disabled: true    # clean-on-validation-error设置false后此参数无用
+    baseline-on-migrate: true   # 开启baseline
+    baseline-version: 1.22.0911   #  在这个版本号之前的“versioned脚本(包含该版本号)”不执行
+    baseline-description: ignore before version ${spring.flyway.baseline-version}
+    #    url: jdbc:mysql://172.16.10.119:3307/flyway_db?characterEncoding=utf8&allowMultiQueries=true&useSSL=false
+    #    user: root
+    #    password: eFreight.cn
+    out-of-order: true
+    ignore-pending-migrations: true
+    clean-on-validation-error: false  # 校验失败是否清理表（一定要false）
+    validate-on-migrate: true   # migrate操作时是否校验
+
+logging:
+  level:
+    root: info

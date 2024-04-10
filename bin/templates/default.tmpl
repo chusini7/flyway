@@ -1,0 +1,12 @@
+{{ define "universal_migration_template" }}
+DROP {{ .Type }} IF EXISTS `{{ .Name }}`;
+delimiter ;;
+
+{{ .Content }}
+
+;;
+{{ end }}
+
+{{ define "table_migration_template" }}
+{{ .Content }}
+{{ end }}

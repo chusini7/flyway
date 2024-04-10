@@ -1,0 +1,1 @@
+INSERT INTO aaa_test (name, age) VALUES ('aaa', 99);

@@ -38,6 +38,7 @@ public class ControllerAspect {
 
     @Before("controllerEntries()")
     public void before(JoinPoint jp) {
+        
         print(jp);
     }
 

@@ -1,6 +1,6 @@
 create table environment_config
 (
-    id          int auto_increment
+    id          int auto_increment 
         primary key,
     env         varchar(32)                        not null,
     url         varchar(256)                       not null,
